@@ -24,6 +24,8 @@ bin/anagrams dicts/lemmad.txt "aGu isAEEtall"
 > 4674,Augeiase tall
 ```
 
+The output is the execution time in microseconds and the found anagrams.
+
 ### Compiling from source (any platform)
 
 1. install [rust](https://www.rust-lang.org/tools/install):
