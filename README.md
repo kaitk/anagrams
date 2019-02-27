@@ -1,7 +1,7 @@
 # Anagrams
 A Quick Take on anagram finding in Rust.
 
-The requirements for the specific task are [discussed here](https://www.helmes.com/careers/challenge/?fbclid=IwAR24MjYoBzK-QNJSMeu_afxYtqJA42h-VmIxaC66b6nJgC16vx-CLq3y_sc)
+The requirements for the specific task are [discussed here](https://www.helmes.com/careers/challenge/?fbclid=IwAR24MjYoBzK-QNJSMeu_afxYtqJA42h-VmIxaC66b6nJgC16vx-CLq3y_sc).
 In essense, make a program, that takes a dictionary and a word as arguments and find all the anagrams of the word in the dictionary
 
 ## Usage
@@ -61,6 +61,7 @@ E.g. We could create an "alphabet vector" for the first string (containing all t
 
 Relevant Javascript code:
 ```javascript
+// Example code in javascript for simplicity
 function isAnagram(word, candidate) {
   const counts = new Array(letters.length).fill(0);
   // add letters of the search word
@@ -84,6 +85,7 @@ Due to the specifics of the task, we can make some rather obvious "optimizations
 
 That algorithm is closer to:
 ```javascript
+//Example code in javascript for simplicity
 function isAnagram(letterCounts, candidate) {
   const counts = [...letterCounts]; //clone
 
@@ -161,3 +163,6 @@ Although one must note, that the parallel doesn't stream. Rather it loads the en
 * Tired forcing target-native (to allow SIMD on modern processors) - No real benefit.
 * Tried jemalloc instead of system-allocator - reverted, No benefit
 
+##Some benchmarking:
+Reference buffering node version finds anagrams of 'Agu isaeetall' in ~37648 microseconds
+The in-memory parallel rust version finds it in ~4471 microseconds
