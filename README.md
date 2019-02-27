@@ -12,12 +12,14 @@ Searching for anagrams for a word is done with the following command:
 
 ```
 bin/anagrams dicts/lemmad.txt asi
+> 4587,ais,asi,isa,sai
 ```
 where the first argument is the dictionary and the other one is the word to search for. 
 
 To use a word with spaces as args do the following:
 ```
 bin/anagrams dicts/lemmad.txt "aGu isAEEtall"
+> 4674,Augeiase tall
 ```
 
 ### Compiling from source (any platform)
