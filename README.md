@@ -164,5 +164,7 @@ Although one must note, that the parallel doesn't stream. Rather it loads the en
 * Tried jemalloc instead of system-allocator - reverted, No benefit
 
 ## Some benchmarking:
-Reference buffering node version finds anagrams of 'Agu isaeetall' in ~37648 microseconds
-The in-memory parallel rust version finds it in ~4471 microseconds
+* Reference buffering node version finds anagrams of 'Agu isaeetall' in 
+`~37648 microseconds`
+* The in-memory parallel rust version finds it in 
+`~4471 microseconds`
