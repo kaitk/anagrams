@@ -6,6 +6,8 @@ In essense, make a program, that takes a dictionary and a word as arguments and 
 
 ## Usage
 
+**Note:** the program *will crash* if the dictionary is not in UTF-8 encoding and contains non-ASCII characters.
+
 ### Executing existing Linux binary
 The project includes a linux binary (compiled under ubuntu 18.04) int the `.bin dir`. It also includes the standard "lemmad.txt" file, specified in the requirements.
 Searching for anagrams for a word is done with the following command:
