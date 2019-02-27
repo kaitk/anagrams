@@ -10,23 +10,33 @@ In essense, make a program, that takes a dictionary and a word as arguments and 
 The project includes a linux binary (compiled under ubuntu 18.04) under bin dir. It also includes the standard "lemmad.txt" file.
 Searching for anagrams for a word is done with the following command:
 
-```bin/anagrams dicts/lemmad.txt asi```
+```
+bin/anagrams dicts/lemmad.txt asi
+```
 where the first argument is the dictionary and the other one is the word to search for. 
 
 To use a word with spaces as args do the following:
-```bin/anagrams dicts/lemmad.txt "aGu isAEEtall"```
+```
+bin/anagrams dicts/lemmad.txt "aGu isAEEtall"
+```
 
-###Compiling from source (any platform)
+### Compiling from source (any platform)
 
 1. install [rust](https://www.rust-lang.org/tools/install):
-```curl https://sh.rustup.rs -sSf | sh```
+```
+curl https://sh.rustup.rs -sSf | sh
+```
 
 2. build the project:
-```cargo build --release```
+```
+cargo build --release
+```
 
 3. run the executable: (built into the `./target/release` folder).
-```./target/release/anagrams dicts/lemmad.txt anagramm```
-(or with any other desired parameters
+```
+./target/release/anagrams dicts/lemmad.txt anagramm
+```
+(or with any other desired parameters)
 
 ## Algorithm
 The naive approach would be, to compare the length word to every string in the dictionary. If it matches sort both strings and validate that they are equal. That however is far from optimal as comparison based sorting has a minimal complexitiy of `O(n log n)`.
