@@ -5,6 +5,7 @@ authors = ["Kait Kasak <kait@kasak.ee>"]
 edition = "2018"
 
 [profile.release]
+lto = true
 opt-level = 3
 
 [dependencies]
