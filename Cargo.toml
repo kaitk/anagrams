@@ -1,0 +1,12 @@
+[package]
+name = "anagrams"
+version = "0.1.0"
+authors = ["Kait Kasak <kait@kasak.ee>"]
+edition = "2018"
+
+[profile.release]
+opt-level = 3
+
+[dependencies]
+hashbrown = "0.1.8"
+rayon = "1.0.3"
