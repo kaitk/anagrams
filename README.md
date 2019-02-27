@@ -105,7 +105,7 @@ Rust is a systems programming language that makes [fearless concurrency](https:/
 
 On top of that RUST allows pretty simple Thread level Parallelism (via [rayon](https://github.com/rayon-rs/rayon)) and Instruction Level Parallelism (via SIMD libraries, like [numeric-array](https://github.com/novacrazy/numeric-array)) without changing your code.
 
-Although the main reason was to try out something new :)
+As the anagram problem is embarrassingly parallel, it probably makes sense to use at least thread-level concurrency. 
 
 For instance: the function for streaming the file and finding anagrams sequencially is the following
 ```rust
@@ -151,3 +151,13 @@ The only real change is replacing `.iter()` with `.par_iter()` and Rayon does th
 Although one must note, that the parallel doesn't stream. Rather it loads the entire dictionary to memory in the beginning. This is required for two reasons:
 1. The vast majority of time goes to fetching the dictonary. When buffering there is no real benefit from using multiple cores.
 2. Rayon [doesn't have a good answer](https://users.rust-lang.org/t/rayon-parallelism-on-the-lines-of-a-text-file/12481) to the problem yet (and probably won't have, until async/await is added to rust).
+
+### Rust specific optimizations:
+* Rayon for parallelizing
+* HashBrown instead of system hashmaps (uses google's swiss-tables and is considerably more optimized)
+* [WIP] numeric-arrays or small-vectors instead of system vectors
+* Enabling Link Time Optimizations in Cargol.toml - No real benefit
+* mark some methods for inlining - No real benefit
+* Tired forcing target-native (to allow SIMD on modern processors) - No real benefit.
+* Tried jemalloc instead of system-allocator - reverted, No benefit
+
