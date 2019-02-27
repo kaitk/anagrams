@@ -163,6 +163,6 @@ Although one must note, that the parallel doesn't stream. Rather it loads the en
 * Tired forcing target-native (to allow SIMD on modern processors) - No real benefit.
 * Tried jemalloc instead of system-allocator - reverted, No benefit
 
-##Some benchmarking:
+## Some benchmarking:
 Reference buffering node version finds anagrams of 'Agu isaeetall' in ~37648 microseconds
 The in-memory parallel rust version finds it in ~4471 microseconds
