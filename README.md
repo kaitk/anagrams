@@ -7,8 +7,10 @@ In essense, make a program, that takes a dictionary and a word as arguments and 
 ## Usage
 
 ### Executing existing Linux binary
-The project includes a linux binary (compiled under ubuntu 18.04) under bin dir. It also includes the standard "lemmad.txt" file.
+The project includes a linux binary (compiled under ubuntu 18.04) int the `.bin dir`. It also includes the standard "lemmad.txt" file, specified in the requirements.
 Searching for anagrams for a word is done with the following command:
+
+**NB!** Included binary only works under linux!
 
 ```
 bin/anagrams dicts/lemmad.txt asi
