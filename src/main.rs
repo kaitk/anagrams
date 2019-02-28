@@ -18,8 +18,19 @@ fn parse_args(args: &[String]) -> (&str, &str) {
     (word, path)
 }
 
+fn print_result(anagrams: Vec<String>, start: Instant) {
+    let elapsed = start.elapsed();
+    let elapsed_micros = elapsed.as_secs() as u32 * 1000000 + elapsed.subsec_micros();
+
+    print!("{}", elapsed_micros);
+    if !anagrams.is_empty() {
+        print!(",");
+    }
+    println!("{}", anagrams.join(","));
+}
+
 fn main() {
-    let now = Instant::now();
+    let start = Instant::now();
 
     let args: Vec<String> = env::args().collect();
     let (word, path) = parse_args(&args);
@@ -30,9 +41,5 @@ fn main() {
     // let anagrams = find_anagrams(word, path).unwrap();
     let anagrams = find_anagrams_parallel(word, path);
 
-    let elapsed = now.elapsed();
-    let elapsed_micros = elapsed.as_secs() as u32 * 1000000 + elapsed.subsec_micros();
-
-    println!("{},{}", elapsed_micros, anagrams.join(","));
-
+    print_result(anagrams, start);
 }

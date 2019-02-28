@@ -32,7 +32,7 @@ pub fn precalc_letter_data(word: &str) -> (HashMap<char, usize>, Vec<i32>) {
 #[inline(always)]
 pub fn is_anagram(candidate: &str, letter_counts: &Vec<i32>, letter_indexes: &HashMap<char, usize>) -> bool {
     // TODO try packed_simd stuff here?
-    let mut counts = letter_counts.clone();
+    let mut counts: Vec<i32> = letter_counts.clone();
     // subtract candidate letters from word ... sum should be zero
     for letter in candidate.to_lowercase().chars() {
         if !letter_indexes.contains_key(&letter) {
@@ -46,6 +46,4 @@ pub fn is_anagram(candidate: &str, letter_counts: &Vec<i32>, letter_indexes: &Ha
         counts[*idx] -= 1;
     }
     true
-    // counts.iter().all(|&count| count == 0)
-    // counts.iter().sum::<i32>() == 0
 }
