@@ -20,7 +20,7 @@ pub fn find_anagrams_parallel(word: &str, path: &str) -> Vec<String> {
         .filter(|candidate|  {
             candidate.len() == word.len() && is_anagram(candidate, &letter_counts,  &letter_indexes)
         })
-        .map(|candidate| candidate.to_string().clone())
+        .map(String::from)
         .collect()
 }
 
