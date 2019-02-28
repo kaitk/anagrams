@@ -30,6 +30,13 @@ mod tests {
 
     #[test]
     fn it_works_on_actual_dictionary() {
-        assert_eq!(find_anagrams_parallel("aGu isAEEtall", "dicts/lemmad.txt"), vec!("Augeiase tall"))
+        let result = find_anagrams_parallel("aGu isAEEtall", "dicts/lemmad.txt");
+        assert_eq!(result, ["Augeiase tall"])
+    }
+
+    #[test]
+    fn it_finds_multiple() {
+        let result = find_anagrams_parallel("aSi", "dicts/lemmad.txt");
+        assert_eq!(result, ["ais", "asi", "isa", "sai"])
     }
 }

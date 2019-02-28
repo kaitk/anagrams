@@ -29,6 +29,11 @@ mod tests {
 
     #[test]
     fn it_works_on_actual_dictionary() {
-        assert_eq!(find_anagrams("aGu isAEEtall", "dicts/lemmad.txt").unwrap(), vec!("Augeiase tall"))
+        assert_eq!(find_anagrams("aGu isAEEtall", "dicts/lemmad.txt").unwrap(), ["Augeiase tall"])
+    }
+
+    #[test]
+    fn it_finds_multiple() {
+        assert_eq!(find_anagrams("aSi", "dicts/lemmad.txt").unwrap(), ["ais", "asi", "isa", "sai"])
     }
 }
