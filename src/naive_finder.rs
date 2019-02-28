@@ -21,3 +21,14 @@ pub fn find_anagrams(word: &str, path: &str) -> Result<Vec<String>> {
     }
     Ok(results)
 }
+
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn it_works_on_actual_dictionary() {
+        assert_eq!(find_anagrams("aGu isAEEtall", "dicts/lemmad.txt").unwrap(), vec!("Augeiase tall"))
+    }
+}

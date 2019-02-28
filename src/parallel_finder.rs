@@ -23,3 +23,13 @@ pub fn find_anagrams_parallel(word: &str, path: &str) -> Vec<String> {
         .map(|candidate| candidate.to_string().clone())
         .collect()
 }
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn it_works_on_actual_dictionary() {
+        assert_eq!(find_anagrams_parallel("aGu isAEEtall", "dicts/lemmad.txt"), vec!("Augeiase tall"))
+    }
+}
