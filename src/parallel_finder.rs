@@ -7,13 +7,11 @@ use crate::anagram::{ is_anagram, precalc_letter_data };
   Notice Can be memory Hungry, as loads the entire file into memory at once.
   No good way to do it differently for now due to limitations in Rayon
 */
-#[allow(dead_code)]
 pub fn find_anagrams_parallel(word: &str, path: &str) -> Vec<String> {
 
     let (letter_indexes, letter_counts) = precalc_letter_data(word);
 
-    let contents = read_to_string(path)
-        .expect("Something went wrong reading the file");
+    let contents = read_to_string(path).expect("failed to read file");
 
     contents
         .par_lines() // <- this is all the parallelization magic
