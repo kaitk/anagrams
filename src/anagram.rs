@@ -47,3 +47,35 @@ pub fn is_anagram(candidate: &str, letter_counts: &Vec<i32>, letter_indexes: &Ha
     }
     true
 }
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    // as we optimise some work on the higer level, use this helper function to simplify testing
+    fn is_anagram(word: &str, candidate: &str) -> bool {
+        let (letter_indexes, letter_counts) = precalc_letter_data(word);
+        word.len() == candidate.len() && super::is_anagram(candidate,  &letter_counts, &letter_indexes)
+    }
+
+    #[test]
+    fn it_validates_simple_anagrams() {
+        assert_eq!(is_anagram("foo", "bar"), false);
+        assert_eq!(is_anagram("foo", "foo"), true);
+        assert_eq!(is_anagram("foo", "fo1"), false);
+        assert_eq!(is_anagram("foo", "ofo"), true);
+    }
+
+    #[test]
+    fn it_works_with_spaces() {
+        assert_eq!(is_anagram("foo", " ofo"), false);
+        assert_eq!(is_anagram("foo ", " ofo"), true);
+        assert_eq!(is_anagram("  ssdiaiisMneiga", "Mida iganes siis", ), true);
+        assert_eq!(is_anagram("aGu isAEEtall", "Augeiase tall"), true);
+    }
+
+    #[test]
+    fn it_is_case_insensitive() {
+        assert_eq!(is_anagram("fOO", "oOF"), true);
+    }
+}
