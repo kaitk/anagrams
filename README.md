@@ -6,14 +6,14 @@ In essense, make a program, that takes a dictionary and a word as arguments and 
 
 ## Usage
 
-**Note:** the program *will crash* if the dictionary is not in UTF-8 encoding and contains non-ASCII characters.
+**Compatiblity Note:** the program *will crash* if the dictionary is not in UTF-8 encoding and contains non-ASCII characters.
 
 ### Executing existing Linux binary
 The project includes a linux binary (compiled under ubuntu 18.04) int the `.bin dir`. It also includes the standard "lemmad.txt" file, specified in the requirements.
+
+**NB!** Included binary only works under linux! Also, if you are using older CPU architectures and the binary fails, then use `bin/anagrams_compatiblity` executable (newer than Intel 4. gen Core, e.g. "Haswell" should be fine) instead of the `bin/anagrams`.
+
 Searching for anagrams for a word is done with the following command:
-
-**NB!** Included binary only works under linux!
-
 ```
 bin/anagrams dicts/lemmad.txt asi
 > 4587,ais,asi,isa,sai
@@ -26,7 +26,12 @@ bin/anagrams dicts/lemmad.txt "aGu isAEEtall"
 > 4674,Augeiase tall
 ```
 
-The output is the execution time in microseconds and the found anagrams.
+When working with huge dictionarys that do not fit to memory (e.g tens of gigabytes), use the streaming mode with the command line flag '-b':
+```
+bin/anagrams dicts/megagigalarge.txt "aGu isAEEtall" -b
+```
+
+The output is the execution time in microseconds and the found anagrams as written in requirements.
 
 ### Compiling from source (any platform)
 
@@ -165,8 +170,8 @@ Although one must note, that the parallel doesn't stream. Rather it loads the en
 * Tired forcing target-native (to allow SIMD on modern processors) - No real benefit.
 * Tried jemalloc instead of system-allocator - reverted, No benefit
 
-## Some benchmarking:
-* Reference buffering node version finds anagrams of 'Agu isaeetall' in 
+## Some benchmarking on the development computer:
+* The reference version written in node (streaming) finds anagrams of 'Agu isaeetall' in 
 `~37648 microseconds`
-* The in-memory parallel rust version finds it in 
+* The rust (in-memory and parallel) version takes:
 `~4471 microseconds`
