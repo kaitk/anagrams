@@ -1,4 +1,5 @@
 use hashbrown::HashMap;
+use smallvec::{ SmallVec, smallvec };
 
 fn letter_indexes(word: &str, char_count: &usize) -> HashMap<char, usize> {
     let mut letter_indexes = HashMap::with_capacity(*char_count);
@@ -9,9 +10,9 @@ fn letter_indexes(word: &str, char_count: &usize) -> HashMap<char, usize> {
 }
 
 
-fn letter_counts(word: &str, char_count: &usize, letter_indexes: &HashMap<char, usize>) -> Vec<i32> {
-    //TODO wastes space as currently also includes all not-unique chars
-    let mut counts = vec![0; *char_count];
+fn letter_counts(word: &str, char_count: &usize, letter_indexes: &HashMap<char, usize>) -> SmallVec<[i32; 32]> {
+    //TODO wastes a bit of space as currently also includes all not-unique chars
+    let mut counts = smallvec![0; *char_count];
 
     // add first word letters to letter_counts
     for letter in word.to_lowercase().chars() {
@@ -22,7 +23,7 @@ fn letter_counts(word: &str, char_count: &usize, letter_indexes: &HashMap<char, 
 }
 
 // Calculates reused data. The count of every char in thre word + letter indexes for quick referencing
-pub fn precalc_letter_data(word: &str) -> (HashMap<char, usize>, Vec<i32>) {
+pub fn precalc_letter_data(word: &str) -> (HashMap<char, usize>, SmallVec<[i32; 32]>) {
     let char_count = word.chars().count();
     let letter_indexes = letter_indexes(word, &char_count);
     let letter_counts = letter_counts(word, &char_count, &letter_indexes);
@@ -30,9 +31,9 @@ pub fn precalc_letter_data(word: &str) -> (HashMap<char, usize>, Vec<i32>) {
 }
 
 #[inline(always)]
-pub fn is_anagram(candidate: &str, letter_counts: &Vec<i32>, letter_indexes: &HashMap<char, usize>) -> bool {
+pub fn is_anagram(candidate: &str, letter_counts: &SmallVec<[i32; 32]>, letter_indexes: &HashMap<char, usize>) -> bool {
     // TODO try packed_simd stuff here?
-    let mut counts: Vec<i32> = letter_counts.clone();
+    let mut counts = letter_counts.clone();
     // subtract candidate letters from word ... sum should be zero
     for letter in candidate.to_lowercase().chars() {
         if !letter_indexes.contains_key(&letter) {
