@@ -6,7 +6,7 @@ In essense, make a program, that takes a dictionary and a word as arguments and 
 
 ## Usage
 
-**Compatiblity Note:** the program *will crash* if the dictionary is not in UTF-8 encoding and contains non-ASCII characters.
+**Compatiblity Note:** the program *will exit with an error* if the dictionary is not in UTF-8 encoding and contains non-ASCII characters.
 
 ### Executing existing Linux binary
 The project includes a linux binary (compiled under ubuntu 18.04) int the `.bin dir`. It also includes the standard "lemmad.txt" file, specified in the requirements.
